@@ -5,8 +5,8 @@ i_have_read_config = False
 bot_token = "###########################################################"
 
 # choose the translation service that translations will be fetched from
-# supported services: "yandex"
-translation_service = "yandex"
+# supported services: "google", "yandex"
+translation_service = "google"
 
 # enter the api key associated with your chosen translation service
 api_key = "######################################################"

@@ -1,12 +1,13 @@
 # discord-auto-translate by JoshSCF (joshl.io)
 
 import config, discord, re
-from modules import yandex
+from modules import google, microsoft, yandex
 from discord import Webhook, RequestsWebhookAdapter
 
 client = discord.Client()
 
 apis = {
+    "google": google,
     "yandex": yandex
 }
 
