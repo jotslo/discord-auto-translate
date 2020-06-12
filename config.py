@@ -6,7 +6,7 @@ bot_token = "###########################################################"
 
 # choose the translation service that translations will be fetched from
 # supported services: "google", "yandex"
-translation_service = "google"
+translation_service = "yandex"
 
 # enter the api key associated with your chosen translation service
 api_key = "######################################################"
