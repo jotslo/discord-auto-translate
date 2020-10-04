@@ -8,7 +8,8 @@ client = discord.Client()
 
 apis = {
     "google": google,
-    "yandex": yandex
+    "yandex": yandex,
+    "microsoft": microsoft
 }
 
 async def get_webhook(bot, channel, webhook_list):
