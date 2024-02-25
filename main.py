@@ -2,9 +2,11 @@
 
 import config, discord, re
 from modules import google, microsoft, yandex
-from discord import Webhook, RequestsWebhookAdapter
+from discord import Webhook
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
 
 apis = {
     "google": google,
@@ -19,7 +21,7 @@ async def get_webhook(bot, channel, webhook_list):
     
     # otherwise, create new webhook and return
     new_webhook = await channel.create_webhook(
-        name = "discord-auto-translate",
+        name = "auto-translate", # name discord cant be used
         reason = "This webhook is used to post translations on behalf of a user."
     )
     return new_webhook
@@ -30,9 +32,9 @@ async def replace_message(message, translation):
 
     # prepare webhook, delete message and send message with the same name & pic as user
     webhook_info = await get_webhook(client.user, message.channel, await message.guild.webhooks())
-    webhook = Webhook.partial(webhook_info.id, webhook_info.token, adapter=RequestsWebhookAdapter())
+    webhook = discord.SyncWebhook.partial(webhook_info.id, webhook_info.token)
     await message.delete()
-    webhook.send(translation, username = user.nick or user.name, avatar_url = user.avatar_url)
+    webhook.send(translation, username = user.display_name or user.name, avatar_url = user.avatar)
 
 
 @client.event
